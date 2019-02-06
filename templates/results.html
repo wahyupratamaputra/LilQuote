@@ -1,0 +1,22 @@
+{% for quote in quotes %}
+    <div class="card">
+        <div class="card-body">
+            {% if session['user_id'] == quote.user_id %}
+            <a href="{{url_for('deletequote', quote_id = quote.id)}}" class="btn btn-danger delete">Delete</a>
+            {% endif %}
+            <h5 class="card-title">{{quote.content}}</h5>
+            <a href="{{url_for('user_quotes', user_id = quote.user_id)}}" class="card-link">{{quote.user.username}}</a>
+        </div>
+    </div>
+{% endfor %}
+
+
+
+{% for user in users %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{user.username}}</h5>
+            <a href="{{url_for('user_quotes', user_id = user.id)}}" class="card-link">{{user.email}}</a>
+        </div>
+    </div>
+{% endfor %}
